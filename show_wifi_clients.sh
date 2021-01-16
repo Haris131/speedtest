@@ -1,0 +1,82 @@
+#!/bin/sh
+ 
+# Shows MAC, IP address and any hostname info for all connected wifi devices
+# written for openwrt 18.06
+# written by galih https://fb.com/galihpa
+
+ban(){
+	# ban wifi clients
+	while true; do
+		echo "Which number do you want to ban ?"
+		read reply
+		mac=$(grep "^\[${reply}\]" /tmp/connected_wifi_clients | cut -f 4)
+		if [[ -n "$mac" ]]; then
+			echo "How many seconds do you want to ban $mac ? [3600 = 1 hour], [43200 = 12 hours], [86400 = 24 hours]"
+			read seconds
+			ubus call hostapd.${interface} del_client "{'addr':'$mac', 'reason':5, 'deauth':false, 'ban_time':${seconds}000}"
+			echo "$mac has been banned for $seconds seconds"
+		else
+			echo "MAC address for number $reply can't be found"
+		fi
+	done
+}
+
+unban(){
+	# unban wifi clients
+	echo "# All banned wifi devices"
+	echo -e "# No\tMAC address"
+	echo "# All banned wifi devices" > /tmp/banned_mac_address
+	echo -e "# No\tMAC address" >> /tmp/banned_mac_address
+	number=1
+	for banned_mac in $(ubus call hostapd.wlan0 list_bans | jsonfilter -e "@.clients[*]"); do
+		echo -e "[$number]\t$banned_mac"
+		echo -e "[$number]\t$banned_mac" >> /tmp/banned_mac_address
+		number=$((number+1))
+	done
+	while true; do
+		echo "Which number do you want to unban ?"
+		read reply
+		mac=$(grep "^\[${reply}\]" /tmp/banned_mac_address | cut -f 2)
+		if [[ -n "$mac" ]]; then
+			ubus call hostapd.${interface} del_client "{'addr':'$mac', 'reason':5, 'deauth':false, 'ban_time':0}"
+			echo "$mac has been unbanned"
+		else
+			echo "MAC address for number $reply can't be found"
+		fi
+	done
+}
+
+echo    "# All connected wifi devices, with IP address,"
+echo    "# hostname (if available), and MAC address."
+echo -e "# No\tIP address\tname\tMAC address"
+# list all wireless network interfaces
+# (for universal driver; see wiki article for alternative commands)
+echo "# All connected wifi devices:" > /tmp/connected_wifi_clients
+echo -e "# No\tIP address\thostname\tMAC address" >> /tmp/connected_wifi_clients
+number=1
+for interface in `iwinfo | grep ESSID | cut -f 1 -s -d" "`
+do
+	# for each interface, get mac addresses of connected stations/clients
+	maclist=`iwinfo $interface assoclist | grep dBm | cut -f 1 -s -d" "`
+	# for each mac address in that list...
+	for mac in $maclist
+	do
+		# If a DHCP lease has been given out by dnsmasq,
+		# save it.
+		ip="UNKN"
+		host=""
+		ip=`cat /tmp/dhcp.leases | cut -f 2,3,4 -s -d" " | grep -i $mac | cut -f 2 -s -d" "`
+		host=`cat /tmp/dhcp.leases | cut -f 2,3,4 -s -d" " | grep -i $mac | cut -f 3 -s -d" "`
+		# ... show the mac address:
+		echo -e "[$number]\t$ip\t$host\t$mac"
+		echo -e "[$number]\t$ip\t$host\t$mac" >> /tmp/connected_wifi_clients
+		number=$((number+1))
+	done
+done
+while read -p "What do you want to do ? [b = ban clients] [u = unban clients] [Ctrl + c = exit]: " reply; do
+	case $reply in
+		b) ban;;
+		u) unban;;
+		*) echo "Wrong option"; exit;;
+ 	esac
+done
