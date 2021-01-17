@@ -13,3 +13,8 @@
 2. wget https://raw.githubusercontent.com/Haris131/speedtest/main/show_wifi_clients -O /usr/bin/show_wifi_clients
 3. chmod +x /usr/bin/show_wifi_clients
 4. show_wifi_clients
+
+# coreutils-base64_8.32-6_aarch64_cortex-a53.ipk
+1. cd /tmp
+2. wget https://github.com/Haris131/speedtest/raw/main/coreutils-base64_8.32-6_aarch64_cortex-a53.ipk
+3. opkg install *.ipk
