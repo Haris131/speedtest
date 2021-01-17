@@ -1,5 +1,5 @@
 #!/bin/sh
- 
+ clear
 # Shows MAC, IP address and any hostname info for all connected wifi devices
 # written for openwrt 18.06
 # written by galih https://fb.com/galihpa
