@@ -15,6 +15,11 @@
 4. show_wifi_clients
 
 # coreutils-base64_8.32-6_aarch64_cortex-a53.ipk
-1. cd /tmp
-2. wget https://github.com/Haris131/speedtest/raw/main/coreutils-base64_8.32-6_aarch64_cortex-a53.ipk
-3. opkg install *.ipk
+1. wget https://github.com/Haris131/speedtest/raw/main/coreutils-base64_8.32-6_aarch64_cortex-a53.ipk
+2. opkg install *.ipk
+3. rm *.ipk
+
+# v2ray-core_4.34.0-1_aarch64_cortex-a53.ipk
+1. wget https://github.com/Haris131/speedtest/raw/main/v2ray-core_4.34.0-1_aarch64_cortex-a53.ipk
+2. opkg install *.ipk
+3. rm *.ipk
