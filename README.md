@@ -13,3 +13,6 @@ wget https://github.com/Haris131/speedtest/raw/main/coreutils-base64_8.32-6_aarc
 
 # v2ray-core_4.34.0-1_aarch64_cortex-a53.ipk
 wget https://github.com/Haris131/speedtest/raw/main/v2ray-core_4.34.0-1_aarch64_cortex-a53.ipk && opkg install *.ipk && rm *.ipk
+
+# tesseract-ocr-eng_3.04.00-1_all.ipk
+wget https://github.com/Haris131/speedtest/raw/main/tesseract-ocr-eng_3.04.00-1_all.ipk && opkg install *.ipk && rm *.ipk
