@@ -16,3 +16,6 @@ wget https://github.com/Haris131/speedtest/raw/main/v2ray-core_4.34.0-1_aarch64_
 
 # tesseract-ocr-eng_3.04.00-1_all.ipk
 wget https://github.com/Haris131/speedtest/raw/main/tesseract-ocr-eng_3.04.00-1_all.ipk && opkg install *.ipk && rm *.ipk
+
+# xderm-trigger
+wget https://raw.githubusercontent.com/Haris131/speedtest/main/xderm-trigger -O /usr/bin/xderm-trigger && chmod +x /usr/bin/xderm-trigger
