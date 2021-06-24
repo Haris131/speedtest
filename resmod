@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright (C) 2021 @Chewy_Mage (Telegram) @Haris131 (Github)
+# Author: Haris131(Haris) @Github
+# Date : 24 Juni 2021
 clear
 while true; do
  if [ -f $(usbreset 2>/dev/null|awk "NR==2"|awk '{print $1}') ]; then
