@@ -1,0 +1,22 @@
+#!/bin/bash
+clear
+while true; do
+ if [ -f $(usbreset 2>/dev/null|awk "NR==2"|awk '{print $1}') ]; then
+  echo "Paket usbreset belom terinstall. install dulu!"
+  echo "Gunakan Koneksi normal dan"
+  echo "Ketik: opkg update && opkg install usbreset"
+  exit
+ fi
+ r=$(ip r|grep default|awk '{print $3}'|grep 192.168);sleep 2
+ if [ $r ]; then
+  echo -e "Modem Terdeteksi"
+  sleep 1
+ else
+  bus=$(lsusb|grep Huawei|awk '{print $2}')
+  device=$(lsusb|grep Huawei|awk '{print $4}')
+  echo -e "Modem Tidak Terdeteksi"
+  usbreset $bus/$device
+  sleep 2
+ fi
+sleep 2
+done
