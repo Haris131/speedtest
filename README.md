@@ -47,3 +47,8 @@ wget https://raw.githubusercontent.com/Haris131/speedtest/main/autorekonek-xderm
 ```
 wget https://raw.githubusercontent.com/Haris131/speedtest/main/resmod -O /usr/bin/resmod && chmod +x /usr/bin/resmod
 ```
+
+# Auto Reset Modem & Auto Rekonek Xderm GUI + Random Config 1-3
+```
+wget https://raw.githubusercontent.com/Haris131/speedtest/main/axresmod -O /usr/bin/axresmod && chmod +x /usr/bin/axresmod
+```
