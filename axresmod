@@ -1,0 +1,37 @@
+#!/bin/bash
+# Copyright (C) 2021 @Chewy_Mage (Telegram) @Haris131 (Github)
+# Author: Haris131(Haris) @Github
+# Date : 24 Juni 2021
+# Auto Reset Modem & Auto Rekonek Xderm GUI + Random Config 1-3
+clear
+while true; do
+ if [ -f $(usbreset 2>/dev/null|awk "NR==2"|awk '{print $1}') ]; then
+  echo "Paket usbreset belom terinstall. install dulu!"
+  echo "Gunakan Koneksi normal dan"
+  echo "Ketik: opkg update && opkg install usbreset"
+  exit
+ fi
+ r=$(ip r|grep default|awk '{print $3}'|grep 192.168);sleep 2
+ if [ $r ]; then
+  echo -e "Modem Terdeteksi"
+  r=$(curl -m50 google.com -w "%{http_code}" --proxy socks5://127.0.0.1:1080 -s -o /dev/null|head -c2);sleep 2
+  if [ $r != 30 ]; then
+   arr=("1" "2" "3")
+   rand=$[$RANDOM % ${#arr[@]}]
+   cfg=/www/xderm/config/config
+   cat $cfg${arr[$rand]} > /www/xderm/config.txt
+   echo -e "Random Config 1 - 3"
+   echo -e "Restart Xderm GUI"
+   echo Start > /www/xderm/log/st;curl -s http://localhost/xderm/index.php -d 'button1=Start';sleep 4
+  fi
+  sleep 1
+  echo -e "HTTP OK"
+ else
+  bus=$(lsusb|grep Huawei|awk '{print $2}')
+  device=$(lsusb|grep Huawei|awk '{print $4}')
+  echo -e "Modem Tidak Terdeteksi"
+  usbreset $bus/$device
+  sleep 2
+ fi
+sleep 2
+done
