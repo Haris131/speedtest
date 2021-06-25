@@ -15,10 +15,9 @@ while true; do
   echo -e "Modem Terdeteksi"
   sleep 1
  else
-  bus=$(lsusb|grep Huawei|awk '{print $2}')
-  device=$(lsusb|grep Huawei|awk '{print $4}')
+  device=$(usbreset|grep Number|awk '{print $2}')
   echo -e "Modem Tidak Terdeteksi"
-  usbreset $bus/$device
+  usbreset $device
   sleep 2
  fi
 sleep 2
