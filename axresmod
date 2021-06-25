@@ -14,8 +14,8 @@ while true; do
  r=$(ip r|grep default|awk '{print $3}'|grep 192.168);sleep 2
  if [ $r ]; then
   echo -e "Modem Terdeteksi"
-  r=$(curl -m50 google.com -w "%{http_code}" --proxy socks5://127.0.0.1:1080 -s -o /dev/null|head -c2);sleep 2
-  if [ $r != 30 ]; then
+  p=$(curl -m50 google.com -w "%{http_code}" --proxy socks5://127.0.0.1:1080 -s -o /dev/null|head -c2);sleep 2
+  if [ $p != 30 ]; then
    arr=("1" "2" "3")
    rand=$[$RANDOM % ${#arr[@]}]
    cfg=/www/xderm/config/config
