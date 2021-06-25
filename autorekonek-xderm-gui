@@ -8,7 +8,7 @@ while true; do
 r=$(curl -m50 google.com -w "%{http_code}" --proxy socks5://127.0.0.1:1080 -s -o /dev/null|head -c2);sleep 2
  if [ $r != 30 ]; then
   echo -e "Restart Xderm GUI"
-  echo Start > /www/xderm/log/st;curl -s http://localhost/xderm/index.php -d 'button1=Start';sleep 4
+  echo Start > /www/xderm/log/st;curl -s http://localhost/xderm/index.php -d 'button1=Start';sleep 10
  fi
 sleep 1
 echo -e "HTTP OK"
