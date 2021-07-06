@@ -15,9 +15,8 @@ while true; do
   echo -e "Modem Terdeteksi"
   sleep 1
  else
-  device=$(usbreset|grep Number|awk '{print $2}')
   echo -e "Modem Tidak Terdeteksi"
-  usbreset $device
+  reboot
   sleep 2
  fi
 sleep 2
