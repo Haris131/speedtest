@@ -10,7 +10,7 @@ wget https://github.com/Haris131/speedtest/raw/main/badvpn-tun2socks -O /usr/bin
 
 # banned & unbanned wifi
 ```
-opkg update && opkg install iwinfo && wget https://raw.githubusercontent.com/Haris131/speedtest/main/show_wifi_clients -O /usr/bin/show_wifi_clients && chmod +x /usr/bin/show_wifi_clients && show_wifi_clients
+opkg update && opkg install iwinfo && wget https://raw.githubusercontent.com/Haris131/speedtest/main/show_wifi_clients -O /usr/bin/swc && chmod +x /usr/bin/swc && swc
 ```
 
 # coreutils-base64_8.32-6_aarch64_cortex-a53.ipk
