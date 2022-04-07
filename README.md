@@ -42,13 +42,3 @@ wget https://github.com/Haris131/speedtest/raw/main/luci-app-zerotier_1.0_all.ip
 ```
 wget https://raw.githubusercontent.com/Haris131/speedtest/main/xderm-rekonek -O /usr/bin/xderm-rekonek && chmod +x /usr/bin/xderm-rekonek
 ```
-
-# Auto Reset Port USB Openwrt
-```
-wget https://raw.githubusercontent.com/Haris131/speedtest/main/resmod -O /usr/bin/resmod && chmod +x /usr/bin/resmod
-```
-
-# Auto Reset Modem (Not Work) & Auto Rekonek Xderm GUI + Random Config 1-3
-```
-wget https://raw.githubusercontent.com/Haris131/speedtest/main/axresmod -O /usr/bin/axresmod && chmod +x /usr/bin/axresmod
-```
