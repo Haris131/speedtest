@@ -37,8 +37,3 @@ wget https://raw.githubusercontent.com/Haris131/speedtest/main/xderm-trigger -O 
 ```
 wget https://github.com/Haris131/speedtest/raw/main/luci-app-zerotier_1.0_all.ipk && opkg update && opkg install *.ipk
 ```
-
-# Autorekonek Xderm GUI
-```
-wget https://raw.githubusercontent.com/Haris131/speedtest/main/xderm-rekonek -O /usr/bin/xderm-rekonek && chmod +x /usr/bin/xderm-rekonek
-```
