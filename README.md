@@ -3,6 +3,11 @@
 wget https://github.com/Haris131/speedtest/raw/main/speedtest -O /usr/bin/speedtest && chmod +x /usr/bin/speedtest && speedtest
 ```
 
+# ram
+```
+wget https://github.com/Haris131/speedtest/raw/main/ram.py -O /usr/bin/ram && chmod +x /usr/bin/ram && ram
+```
+
 # badvpn-tun2socks
 ```
 wget https://github.com/Haris131/speedtest/raw/main/badvpn-tun2socks -O /usr/bin/badvpn-tun2socks && chmod +x /usr/bin/badvpn-tun2socks && badvpn-tun2socks
